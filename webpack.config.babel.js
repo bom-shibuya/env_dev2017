@@ -19,7 +19,6 @@ const commonConfig = {
   output: {
     filename: "[name].js"
   },
-  devtool: "source-map",
   // ファイル名解決のための設定
   resolve: {
     // 拡張子の省略
@@ -48,17 +47,7 @@ const commonConfig = {
         test: /\.modernizrrc$/,
         loader: "modernizr"
       }
-    ],
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      }
     ]
-  },
-  eslint: {
-   configFile: './.eslintrc'
   },
   // プラグイン
   plugins: [
@@ -76,12 +65,30 @@ const commonConfig = {
   ]
 };
 
-const prodConfigs = Object.assign({}, commonConfig, {
-  plugins: [...commonConfig.plugins, new webpack.optimize.UglifyJsPlugin()]
-});
+const devConfigs = {
+  ...commonConfig,
+  devtool: "source-map",
+  eslint: {
+   configFile: './.eslintrc'
+  },
+  module: {
+    ...commonConfig.module,
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader"
+      }
+    ]
+  }
+};
 
+
+const prodConfigs = {...commonConfig,
+  plugins: [...commonConfig.plugins, new webpack.optimize.UglifyJsPlugin()]
+};
 
 module.exports = {
-  dev: commonConfig,
+  dev: devConfigs,
   prod: prodConfigs
 };

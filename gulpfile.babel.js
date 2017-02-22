@@ -189,8 +189,6 @@ gulp.task('releaseJs', () => {
     .pipe(gulp.dest(DIR.release_assets + 'js'))
 });
 
-console.log(webpackConfig.prod);
-
 // imgのcopy
 gulp.task('imgCopy', ()=> {
   return gulp.src(DIR.dest_assets + 'img/**/*.{jpg,png,gif,svg,ico}')
