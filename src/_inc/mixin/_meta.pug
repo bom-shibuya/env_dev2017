@@ -1,0 +1,12 @@
+mixin metaList(pageSetObj)
+  // ogp
+  meta(property="og:type", content= pageSetObj.type)
+  meta(property="og:locale", content="ja_JP")
+  meta(property="og:url", content= setting.url)
+  meta(property="og:site_name", content= setting.siteName)
+  meta(property="og:image", content= pageSetObj.imageUrl)
+  meta(property="og:title", content= pageSetObj.title)
+  meta(property="og:description", content= pageSetObj.description)
+  // meta
+  meta(name="description" ,content= pageSetObj.description)
+  title= pageSetObj.title

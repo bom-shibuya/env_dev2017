@@ -1,0 +1,49 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "description": "Tokyo Shibuya Style",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp:release": "gulp release",
+    "pregulp": "nodebrew use v7.5.0",
+    "gulp": "gulp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-latest": "^6.22.0",
+    "browser-sync": "^2.12.8",
+    "date-utils": "^1.2.21",
+    "eslint": "^3.11.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-import": "^2.2.0",
+    "expose-loader": "^0.7.1",
+    "gulp": "^3.9.1",
+    "gulp-file-include": "^1.0.0",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-insert": "^0.5.0",
+    "gulp-pleeease": "^2.0.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-webpack": "^1.5.0",
+    "modernizr": "^3.3.1",
+    "modernizr-loader": "0.0.5",
+    "modernizr-webpack-plugin": "^1.0.5",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "gsap": "^1.19.0",
+    "imagesloaded": "^4.1.1",
+    "jquery": "^2.2.4",
+    "webfontloader": "^1.6.27"
+  }
+}

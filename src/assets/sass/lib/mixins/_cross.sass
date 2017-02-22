@@ -1,0 +1,18 @@
+=cross($color: $white, $size: 10px, $width: 1px, $position: relative)
+  display: block
+  height: $size
+  width: $size
+  position: $position
+  &::before,
+  &::after
+    content: ''
+    height: $width
+    width: 100%
+    background-color: $color
+    position: absolute
+    left: 50%
+    top: 50%
+  &::before
+    transform: translate(-50%,-50%) rotate(45deg)
+  &::after
+    transform: translate(-50%,-50%) rotate(-45deg)
