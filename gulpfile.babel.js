@@ -85,7 +85,7 @@ gulp.task('sass', ()=> {
 
 // js
 gulp.task('scripts', () => {
-    return gulp.src(DIR.src.assets + 'js/*.js')
+    return gulp.src(DIR.src_assets + 'js/*.js')
     .pipe(webpack(webpackConfig.dev))
     .pipe(gulp.dest(DIR.dest_assets + 'js'))
     .pipe(browserSync.stream());
@@ -119,7 +119,7 @@ gulp.task("pug", ()=> {
 
 // imageMin
 gulp.task('imageMin', ()=> {
-  return gulp.src(DIR.src.assets + 'img/**/*')
+  return gulp.src(DIR.src_assets + 'img/**/*')
   .pipe(imagemin(
     [
     imagemin.gifsicle({
@@ -148,8 +148,8 @@ gulp.task('imageMin', ()=> {
 // watch
 gulp.task('watch', ()=> {
   gulp.watch(DIR.src + '**/*.pug', ['pug']);
-  gulp.watch(DIR.src.assets + 'sass/**/*.{sass,scss}', ['sass']);
-  gulp.watch(DIR.src.assets + 'js/**/*.js', ['scripts']);
+  gulp.watch(DIR.src_assets + 'sass/**/*.{sass,scss}', ['sass']);
+  gulp.watch(DIR.src_assets + 'js/**/*.js', ['scripts']);
 });
 
 
@@ -184,7 +184,7 @@ gulp.task('releaseCss', ()=> {
 
 // js conat
 gulp.task('releaseJs', () => {
-  return gulp.src(DIR.src.assets + 'js/*.js')
+  return gulp.src(DIR.src_assets + 'js/*.js')
     .pipe(webpack(webpackConfig.prod))
     .pipe(gulp.dest(DIR.release_assets + 'js'))
 });
