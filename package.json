@@ -1,12 +1,14 @@
 {
-  "name": "dev",
+  "name": "Tokyo_Shibuya_dev",
   "version": "1.0.0",
   "description": "Tokyo Shibuya Style",
   "main": "index.js",
+  "engines": {
+    "node": "7.5.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp:release": "gulp release",
-    "pregulp": "nodebrew use v7.5.0",
     "gulp": "gulp"
   },
   "keywords": [],
@@ -36,15 +38,14 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.9.1",
     "gulp-webpack": "^1.5.0",
-    "modernizr": "^3.3.1",
     "modernizr-loader": "0.0.5",
-    "modernizr-webpack-plugin": "^1.0.5",
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
     "gsap": "^1.19.0",
     "imagesloaded": "^4.1.1",
     "jquery": "^2.2.4",
+    "modernizr": "^3.4.0",
     "webfontloader": "^1.6.27"
   }
 }

@@ -10,7 +10,6 @@
 
 import webpack from 'webpack';
 import Path from 'path';
-import ModernizrWebpackPlugin from 'modernizr-webpack-plugin';
 
 const commonConfig = {
   entry: {
