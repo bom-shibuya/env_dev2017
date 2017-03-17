@@ -22,7 +22,8 @@ import imagemin from 'gulp-imagemin'; // 画像圧縮
 import sass from 'gulp-sass'; // sass!!!
 import sourcemaps from'gulp-sourcemaps'; // sassのソースマップ吐かせる
 import please from "gulp-pleeease"; // sass周りのいろいろ
-import webpack from 'gulp-webpack'; // js関係のことを今回やらせます。
+import webpack from 'webpack'; // js関係のことを今回やらせます。
+import webpackStream from 'webpack-stream'; // webpack2をつかうためのもの
 import webpackConfig from './webpack.config.babel.js'; // webpackの設定ファイル
 
 
@@ -85,8 +86,7 @@ gulp.task('sass', ()=> {
 
 // js
 gulp.task('scripts', () => {
-    return gulp.src(DIR.src_assets + 'js/*.js')
-    .pipe(webpack(webpackConfig.dev))
+    return webpackStream(webpackConfig.dev, webpack)
     .pipe(gulp.dest(DIR.dest_assets + 'js'))
     .pipe(browserSync.stream());
 });
@@ -184,9 +184,8 @@ gulp.task('releaseCss', ()=> {
 
 // js conat
 gulp.task('releaseJs', () => {
-  return gulp.src(DIR.src_assets + 'js/*.js')
-    .pipe(webpack(webpackConfig.prod))
-    .pipe(gulp.dest(DIR.release_assets + 'js'))
+  return webpackStream(webpackConfig.prod, webpack)
+  .pipe(gulp.dest(DIR.release_assets + 'js'))
 });
 
 // imgのcopy
