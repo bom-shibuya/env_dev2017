@@ -13,7 +13,7 @@ import Path from 'path';
 
 const commonConfig = {
   entry: {
-    script: './src/assets/js/script.js'
+    script: './app/src/assets/js/script.js'
   },
   output: {
     filename: "[name].js"
@@ -28,9 +28,6 @@ const commonConfig = {
     // root: Path.resolve(__dirname + 'node_modules/'),
     // プラグインのpath解決
     alias: {
-      "TweenLite": Path.resolve("node_modules", "gsap/src/uncompressed/TweenLite"),
-      "ScrollTo":  Path.resolve("node_modules", "gsap/src/uncompressed/plugins/ScrollToPlugin.js"),
-      "EasePack":  Path.resolve("node_modules", "gsap/src/uncompressed/easing/EasePack.js"),
       "modernizr$": Path.resolve(__dirname, ".modernizrrc")
     }
   },

@@ -30,12 +30,12 @@ import webpackConfig from './webpack.config.babel.js'; // webpackの設定ファ
 
 // main directory
 const DIR = {
-  src:  'src/',
-  src_assets: 'src/assets/',
-  dest: 'dest/',
-  dest_assets: 'dest/assets/',
-  release: '_release/',
-  release_assets: 'release/assets/'
+  src:  'app/src/',
+  src_assets: 'app/src/assets/',
+  dest: 'app/dest/',
+  dest_assets: 'app/dest/assets/',
+  release: 'app/_release/',
+  release_assets: 'app/_release/assets/'
 };
 
 // assets directory

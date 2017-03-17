@@ -42,7 +42,7 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
-    "gsap": "^1.19.0",
+    "gsap": "^1.19.1",
     "imagesloaded": "^4.1.1",
     "jquery": "^2.2.4",
     "modernizr": "^3.4.0",
