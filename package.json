@@ -25,6 +25,7 @@
     "browser-sync": "^2.12.8",
     "date-utils": "^1.2.21",
     "eslint": "^3.11.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
     "expose-loader": "^0.7.1",

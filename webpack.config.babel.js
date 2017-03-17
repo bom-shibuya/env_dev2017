@@ -1,11 +1,11 @@
 'use strict';
 /*
-      ██╗    ██╗███████╗██████╗ ██████╗  █████╗  ██████╗██╗  ██╗
-      ██║    ██║██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
-      ██║ █╗ ██║█████╗  ██████╔╝██████╔╝███████║██║     █████╔╝
-      ██║███╗██║██╔══╝  ██╔══██╗██╔═══╝ ██╔══██║██║     ██╔═██╗
-      ╚███╔███╔╝███████╗██████╔╝██║     ██║  ██║╚██████╗██║  ██╗
-       ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+      ██╗    ██╗███████╗██████╗ ██████╗  █████╗  ██████╗██╗  ██╗██████╗
+      ██║    ██║██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝██║ ██╔╝╚════██╗
+      ██║ █╗ ██║█████╗  ██████╔╝██████╔╝███████║██║     █████╔╝  █████╔╝
+      ██║███╗██║██╔══╝  ██╔══██╗██╔═══╝ ██╔══██║██║     ██╔═██╗ ██╔═══╝
+      ╚███╔███╔╝███████╗██████╔╝██║     ██║  ██║╚██████╗██║  ██╗███████╗
+       ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝
  */
 
 import webpack from 'webpack';
@@ -16,24 +16,24 @@ const commonConfig = {
     script: './app/src/assets/js/script.js'
   },
   output: {
-    filename: "[name].js"
+    filename: '[name].js'
   },
   // ファイル名解決のための設定
   resolve: {
     // 拡張子の省略
-    extensions: ['', '.js'],
+    extensions: ['.js'],
     // moduleのディレクトリ指定
-    modulesDirectories: ['node_modules'],
+    modules: ['node_modules'],
     // rootの解決
     // root: Path.resolve(__dirname + 'node_modules/'),
     // プラグインのpath解決
     alias: {
-      "modernizr$": Path.resolve(__dirname, ".modernizrrc")
+      'modernizr$': Path.resolve(__dirname, '.modernizrrc')
     }
   },
   // モジュール
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -41,14 +41,12 @@ const commonConfig = {
       },
       {
         test: /\.modernizrrc$/,
-        loader: "modernizr"
+        loader: 'modernizr-loader'
       }
     ]
   },
   // プラグイン
   plugins: [
-    // ライブラリ間で依存しているモジュールが重複している場合、二重に読み込まないようにする
-    new webpack.optimize.DedupePlugin(),
     // ファイルを細かく分析し、まとめられるところはできるだけまとめてコードを圧縮する
     new webpack.optimize.AggressiveMergingPlugin(),
     // jQueryをグローバルに出す
@@ -61,25 +59,22 @@ const commonConfig = {
   ]
 };
 
+// for development Config
 const devConfigs = {
   ...commonConfig,
-  devtool: "source-map",
-  eslint: {
-   configFile: './.eslintrc'
-  },
+  devtool: 'cheap-module-source-map',
   module: {
-    ...commonConfig.module,
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      }
-    ]
+    rules: [...commonConfig.module.rules, {
+      enforce: 'pre', // 先に読んでね
+      test: /.js$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    }]
   }
 };
 
 
+// for production Config
 const prodConfigs = {...commonConfig,
   plugins: [...commonConfig.plugins, new webpack.optimize.UglifyJsPlugin()]
 };
