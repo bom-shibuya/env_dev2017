@@ -24,8 +24,6 @@ const commonConfig = {
     extensions: ['.js'],
     // moduleのディレクトリ指定
     modules: ['node_modules'],
-    // rootの解決
-    // root: Path.resolve(__dirname + 'node_modules/'),
     // プラグインのpath解決
     alias: {
       'modernizr$': Path.resolve(__dirname, '.modernizrrc')

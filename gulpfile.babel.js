@@ -87,6 +87,7 @@ gulp.task('sass', ()=> {
 // js
 gulp.task('scripts', () => {
   return webpackStream(webpackConfig.dev, webpack)
+  .pipe(plumber())
   .pipe(gulp.dest(DIR.dest_assets + 'js'))
   .pipe(browserSync.stream());
 });
