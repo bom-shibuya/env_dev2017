@@ -10,10 +10,11 @@
 
 import webpack from 'webpack';
 import Path from 'path';
+import DIR from './directory.js';
 
 const commonConfig = {
   entry: {
-    script: './app/src/assets/js/script.js'
+    script: DIR.src_assets + 'js/script.js'
   },
   output: {
     filename: '[name].js'
@@ -75,7 +76,7 @@ const commonConfig = {
 // for development Config
 const devConfig = {
   ...commonConfig,
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-source-map'
 };
 
 // for development linter mode

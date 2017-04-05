@@ -25,23 +25,25 @@ import please from "gulp-pleeease"; // sass周りのいろいろ
 import webpack from 'webpack'; // js関係のことを今回やらせます。
 import webpackStream from 'webpack-stream'; // webpack2をつかうためのもの
 import webpackConfig from './webpack.config.babel.js'; // webpackの設定ファイル
-import minimist from 'minimist'; // タスク実行時に引数を渡すため
+import minimist from 'minimist'; // タスク実行時に引数を渡す
+import del from 'del'; // clean task用
+import DIR from './directory.js'; // directory 共通化用
 
-// *********** DIRECTORY ***********
+// *********** COMMON METHOD ***********
 
-// main directory
-const DIR = {
-  src:  'app/src/',
-  src_assets: 'app/src/assets/',
-  dest: 'app/dest/',
-  dest_assets: 'app/dest/assets/',
-  release: 'app/_release/',
-  release_assets: 'app/_release/assets/'
-};
+// 実行時の引数取得
+const args = minimist(process.argv.slice(2));
 
-// *********** TIME ***********
-
+// 現在時刻の取得
 const fmtdDate = new Date().toFormat("YYYY-MM-DD HH24MISS");
+
+// clean
+let cleanDIR;
+gulp.task('clean', cb => {
+  // if(args.clean) return del([cleanDIR], cb);
+  // return cb();
+  return del([cleanDIR], cb);
+});
 
 // *********** DEVELOPMENT TASK ***********
 
@@ -81,12 +83,9 @@ gulp.task('sass', ()=> {
   .pipe(browserSync.stream());
 });
 
-
-// 実行時の引数取得
-const args = minimist(process.argv.slice(2));
-const webpackDevConfig = args.lint ? webpackConfig.devLint : webpackConfig.dev;
-
 // js
+// webpackConfigを引数によって通常のものかlint用か切り替える
+const webpackDevConfig = args.lint ? webpackConfig.devLint : webpackConfig.dev;
 gulp.task('scripts', () => {
   return webpackStream(webpackDevConfig, webpack)
   .pipe(plumber())
@@ -118,34 +117,24 @@ gulp.task("pug", ()=> {
     .pipe(browserSync.stream());
 });
 
-
 // imageMin
 gulp.task('imageMin', ()=> {
   return gulp.src(DIR.src_assets + 'img/**/*')
   .pipe(imagemin(
     [
-    imagemin.gifsicle({
-      optimizationLevel: 3,
-      interlaced: true
-    }),
-    imagemin.jpegtran({
-      progressive: true
-    }),
-    imagemin.optipng({
-      optimizationLevel: 5
-    }),
-    imagemin.svgo({
-      removeViewBox: false
-    })
+      imagemin.gifsicle({
+        optimizationLevel: 3,
+        interlaced: true
+      }),
+      imagemin.jpegtran({ progressive: true }),
+      imagemin.optipng({ optimizationLevel: 5 }),
+      imagemin.svgo({ removeViewBox: false })
     ],
-    {
-      verbose: true
-    }
+    { verbose: true }
   ))
   .pipe(gulp.dest(DIR.dest_assets + 'img/'))
   .pipe(browserSync.stream());
 });
-
 
 // watch
 gulp.task('watch', ()=> {
@@ -154,38 +143,34 @@ gulp.task('watch', ()=> {
   gulp.watch(DIR.src_assets + 'js/**/*.js', ['scripts']);
 });
 
-
 // default
 gulp.task('default', ()=> {
+  cleanDIR = DIR.dest
   runSequence(
+    'clean',
     ['pug', 'scripts', 'sass', 'imageMin'],
     'browserSync',
     'watch'
   )
 });
 
-
 // *********** RELEASE TASK ***********
 
 // css
-gulp.task('releaseCss', ()=> {
+gulp.task('prodCss', ()=> {
   return gulp.src(DIR.dest_assets + 'css/*.css')
   .pipe(please({
-    autoprefixer: {
-      browsers: ['last 4 versions', 'last 4 ios_saf versions']
-    },
     sass: false,
     minifier: true,
     rem: false,
-    pseudoElements: false,
-    mqpacker: true
+    pseudoElements: false
   }))
   .pipe(insert.prepend('/*! compiled at:' + fmtdDate + ' */\n'))
   .pipe(gulp.dest(DIR.release_assets + 'css/'))
 });
 
 // js conat
-gulp.task('releaseJs', () => {
+gulp.task('prodScripts', () => {
   return webpackStream(webpackConfig.prod, webpack)
   .pipe(gulp.dest(DIR.release_assets + 'js'))
 });
@@ -196,7 +181,6 @@ gulp.task('imgCopy', ()=> {
   .pipe(gulp.dest(DIR.release_assets + 'img/'))
 });
 
-
 // htmlのcopy
 gulp.task('htmlCopy', ()=> {
   return gulp.src(DIR.dest + '**/*.html')
@@ -205,10 +189,9 @@ gulp.task('htmlCopy', ()=> {
 
 // for release
 gulp.task('release', ()=>{
+  cleanDIR = DIR.release;
   runSequence(
-    'releaseCss',
-    'releaseJs',
-    'imgCopy',
-    'htmlCopy'
+    'clean',
+    ['prodCss', 'prodScripts', 'imgCopy', 'htmlCopy']
   )
 })
