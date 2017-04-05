@@ -35,7 +35,19 @@ const commonConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          babelrc: false,
+          presets: [
+          "stage-0",
+          ["es2015", { "modules": false}],
+          "es2016",
+          "es2017"
+          ],
+          plugins: [
+            'transform-runtime'
+          ]
+        }
       },
       {
         test: /\.modernizrrc$/,
@@ -48,12 +60,12 @@ const commonConfig = {
     // ファイルを細かく分析し、まとめられるところはできるだけまとめてコードを圧縮する
     new webpack.optimize.AggressiveMergingPlugin(),
     // jQueryをグローバルに出す
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      jquery: 'jquery',
-      'window.jQuery': 'jquery'
-    })
+    // new webpack.ProvidePlugin({
+    //   jQuery: 'jquery',
+    //   $: 'jquery',
+    //   jquery: 'jquery',
+    //   'window.jQuery': 'jquery'
+    // })
   ]
 };
 
