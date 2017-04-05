@@ -38,14 +38,17 @@ const commonConfig = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [
-          "stage-0",
-          ["es2015", { "modules": false}],
-          "es2016",
-          "es2017"
+          "presets": [
+            "stage-0",
+            ["env", {
+              "targets": {
+                 "browsers": ["last 2 versions", "ie >= 11"]
+              },
+              "modules": false
+            }]
           ],
-          plugins: [
-            'transform-runtime'
+          "plugins": [
+            "transform-runtime"
           ]
         }
       },
@@ -60,12 +63,12 @@ const commonConfig = {
     // ファイルを細かく分析し、まとめられるところはできるだけまとめてコードを圧縮する
     new webpack.optimize.AggressiveMergingPlugin(),
     // jQueryをグローバルに出す
-    // new webpack.ProvidePlugin({
-    //   jQuery: 'jquery',
-    //   $: 'jquery',
-    //   jquery: 'jquery',
-    //   'window.jQuery': 'jquery'
-    // })
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery',
+      'window.jQuery': 'jquery'
+    })
   ]
 };
 
