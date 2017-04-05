@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "gulp",
     "lint": "gulp --lint",
-    "release": "gulp release"
+    "release": "gulp release",
+    "server": "browser-sync start -s './app/_release' --port 8000"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prefer-object-spread": "^1.1.0",
     "eslint-plugin-react": "^6.10.0",
     "expose-loader": "^0.7.1",
     "gulp": "^3.9.1",
