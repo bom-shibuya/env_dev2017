@@ -25,7 +25,7 @@ import please from "gulp-pleeease"; // sass周りのいろいろ
 import webpack from 'webpack'; // js関係のことを今回やらせます。
 import webpackStream from 'webpack-stream'; // webpack2をつかうためのもの
 import webpackConfig from './webpack.config.babel.js'; // webpackの設定ファイル
-
+import minimist from 'minimist'; // タスク実行時に引数を渡すため
 
 // *********** DIRECTORY ***********
 
@@ -39,14 +39,11 @@ const DIR = {
   release_assets: 'app/_release/assets/'
 };
 
-// assets directory
-const assets = 'assets/';
-
 // *********** TIME ***********
 
 const fmtdDate = new Date().toFormat("YYYY-MM-DD HH24MISS");
 
-// *********** TASK ***********
+// *********** DEVELOPMENT TASK ***********
 
 // browserSync
 gulp.task('browserSync', ()=> {
@@ -84,16 +81,20 @@ gulp.task('sass', ()=> {
   .pipe(browserSync.stream());
 });
 
+
+// 実行時の引数取得
+const args = minimist(process.argv.slice(2));
+const webpackDevConfig = args.lint ? webpackConfig.devLint : webpackConfig.dev;
+
 // js
 gulp.task('scripts', () => {
-  return webpackStream(webpackConfig.dev, webpack)
+  return webpackStream(webpackDevConfig, webpack)
   .pipe(plumber())
   .pipe(gulp.dest(DIR.dest_assets + 'js'))
   .pipe(browserSync.stream());
 });
 
-
-// ヘッダー・フッターインクルード
+// html include
 gulp.task("fileinclude", ()=> {
   gulp.src([DIR.src + '**/*.html', '!' + DIR.src +'_inc/**/*.html'])
     .pipe(plumber())

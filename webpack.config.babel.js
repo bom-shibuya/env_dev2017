@@ -73,26 +73,31 @@ const commonConfig = {
 };
 
 // for development Config
-const devConfigs = {
+const devConfig = {
   ...commonConfig,
   devtool: 'cheap-module-source-map',
-  module: {
-    rules: [...commonConfig.module.rules, {
-      enforce: 'pre', // 先に読んでね
-      test: /.js$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader'
-    }]
-  }
 };
 
+// for development linter mode
+const devLintConfig = {
+    ...devConfig,
+    module: {
+      rules: [...commonConfig.module.rules, {
+        enforce: 'pre', // 先に読んでね
+        test: /.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }]
+    }
+}
 
 // for production Config
-const prodConfigs = {...commonConfig,
+const prodConfig = {...commonConfig,
   plugins: [...commonConfig.plugins, new webpack.optimize.UglifyJsPlugin()]
 };
 
 module.exports = {
-  dev: devConfigs,
-  prod: prodConfigs
+  dev: devConfig,
+  devLint: devLintConfig,
+  prod: prodConfig
 };

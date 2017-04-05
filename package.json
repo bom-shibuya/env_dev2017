@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp:release": "gulp release",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "lint": "gulp --lint"
   },
   "keywords": [],
   "author": "",
@@ -41,6 +42,7 @@
     "gulp-pug": "^3.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.9.1",
+    "minimist": "^1.2.0",
     "modernizr-loader": "0.0.5",
     "run-sequence": "^1.2.2",
     "webpack": "^2.2.1",
