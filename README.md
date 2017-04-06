@@ -88,6 +88,9 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
       |
     package.json ...
 
+ディレクトリはpackage.jsonとどう階層においてあるdirectory.jsをgulpfileとwebpack configで使っています。<br>
+ディレクトリ構成を変更する場合はそこも確認してみてください。
+
 ### webpackとbabelとeslint
 
 **webpack configについて**
