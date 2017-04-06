@@ -1,7 +1,7 @@
 {
   "name": "Tokyo_Shibuya_dev",
   "version": "1.0.0",
-  "description": "Tokyo Shibuya Style",
+  "description": "Tokyo Shibuya Development Kit",
   "main": "index.js",
   "engines": {
     "node": "7.5.0"
@@ -15,8 +15,8 @@
     "server": "browser-sync start -s './app/_release' --port 8000"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bom Shibuya",
+  "license": "MIT",
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.23.1",
