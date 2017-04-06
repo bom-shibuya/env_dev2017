@@ -143,6 +143,15 @@ gulp.task('watch', ()=> {
   gulp.watch(DIR.src_assets + 'js/**/*.js', ['scripts']);
 });
 
+// only build
+gulp.task('build', ()=> {
+  cleanDIR = DIR.dest
+  runSequence(
+    'clean',
+    ['pug', 'scripts', 'sass', 'imageMin'],
+  )
+});
+
 // default
 gulp.task('default', ()=> {
   cleanDIR = DIR.dest

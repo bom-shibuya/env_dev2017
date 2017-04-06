@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp",
+    "start": "gulp",
     "lint": "gulp --lint",
+    "build": "gulp build",
     "release": "gulp release",
     "server": "browser-sync start -s './app/_release' --port 8000"
   },
