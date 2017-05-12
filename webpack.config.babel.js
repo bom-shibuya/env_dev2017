@@ -39,17 +39,17 @@ const commonConfig = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          "presets": [
-            "stage-0",
-            ["env", {
-              "targets": {
-                 "browsers": ["last 2 versions", "ie >= 11"]
+          'presets': [
+            'stage-0',
+            ['env', {
+              'targets': {
+                 'browsers': ['last 4 versions', 'not ie < 11']
               },
-              "modules": false
+              'modules': false
             }]
           ],
-          "plugins": [
-            "transform-runtime"
+          'plugins': [
+            'transform-runtime'
           ]
         }
       },

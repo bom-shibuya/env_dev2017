@@ -70,7 +70,7 @@ gulp.task('sass', ()=> {
   .on('error', sass.logError))
   .pipe(please({
     autoprefixer: {
-      browsers: ['last 4 versions', 'last 4 ios_saf versions']
+      browsers: ['last 4 versions', 'not ie < 11']
     },
     sass: false,
     minifier: false,
