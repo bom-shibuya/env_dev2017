@@ -109,3 +109,9 @@ babelで jsのトランスパイルを行っていますが、webpack2の絡み�
 
 FREE CODE CAMPのものをパクってきて使ってます。~~ですが、**エラーを警告に変更**してます。これはlintモードもwatchが走るようにしているのですが、警告がでるとwatchが止まるからです。方法が見つかれば修正するかも~~<br>
 有志の助言によって解決しました。勉強不足でした。
+
+
+### special thunks
+
+inagaki氏のsassファイルからmixins, variablesのutils, colorファイルの構成を使用させてもらってます。<br>
+thunk you inagakiiii!!
