@@ -1,0 +1,41 @@
+// thunks inagaki!!
+
+// letter-spacingラクしたい
+//// 引数なしで-.5em、引数ありでその値になります。
+=letter-spacing($spacing: -.5em)
+  letter-spacing: $spacing
+
+// clearfix
+=clearfix
+  &:after
+    content: ""
+    clear: both
+    display: block
+
+// bgSize
+=bgCover()
+  background-repeat: no-repeat
+  background-position: center
+  background-size: cover
+
+=bgContain()
+  background-repeat: no-repeat
+  background-position: center
+  background-size: contain
+
+// Centering
+//// +place()：上下左右中央
+//// +place(n%, n%, string, string)：第一第二引数に配置位置,第三にtranslateの前のプロパティ,第四にtranslateの後ろのプロパティ
+//// e.g.: +place(70%, null, scale(0.5), rotate(45deg))
+=place($position1: null, $position2: null, $addPrependProp: null ,$addAppendProp: null)
+  position: absolute
+  // centering
+  @if ($position1 == null)
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    // placement
+  @else
+    top: $position2
+    left: $position1
+    transform: $addPrependProp translate(-$position1, -$position2) $addAppendProp
