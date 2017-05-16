@@ -111,7 +111,7 @@ FREE CODE CAMPのものをパクってきて使ってます。~~ですが、**�
 有志の助言によって解決しました。勉強不足でした。
 
 
-### special thunks
+### special thanks
 
 inagaki氏のsassファイルからmixins, variablesのutils, colorファイルの構成を使用させてもらってます。<br>
 thunk you inagakiiii!!
