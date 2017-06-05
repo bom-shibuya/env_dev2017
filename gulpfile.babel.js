@@ -27,7 +27,9 @@ import webpackStream from 'webpack-stream'; // webpack2をつかうためのも�
 import webpackConfig from './webpack.config.babel.js'; // webpackの設定ファイル
 import minimist from 'minimist'; // タスク実行時に引数を渡す
 import del from 'del'; // clean task用
-import DIR from './directory.js'; // directory 共通化用
+import DirectoryManager from './DirectoryManager.js'; // directory 共通化用
+
+const DIR = DirectoryManager();
 
 // *********** COMMON METHOD ***********
 

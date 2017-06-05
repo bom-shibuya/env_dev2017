@@ -10,7 +10,9 @@
 
 import webpack from 'webpack';
 import Path from 'path';
-import DIR from './directory.js';
+import DirectoryManager from './DirectoryManager.js';
+
+const DIR = DirectoryManager('./')
 
 const commonConfig = {
   entry: {
