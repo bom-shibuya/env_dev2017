@@ -1,5 +1,6 @@
 'use strict';
 
+import 'babel-polyfill';
 // impot library
 // import {
 //   TweenMax,
