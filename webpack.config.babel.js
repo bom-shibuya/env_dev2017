@@ -83,19 +83,6 @@ const devConfig = {
   devtool: 'cheap-module-source-map'
 };
 
-// for development linter mode
-const devLintConfig = {
-    ...devConfig,
-    module: {
-      rules: [...commonConfig.module.rules, {
-        enforce: 'pre', // 先に読んでね
-        test: /.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      }]
-    }
-};
-
 // for production Config
 const prodConfig = {...commonConfig,
   plugins: [...commonConfig.plugins, new webpack.optimize.UglifyJsPlugin()]
@@ -103,6 +90,5 @@ const prodConfig = {...commonConfig,
 
 module.exports = {
   dev: devConfig,
-  devLint: devLintConfig,
   prod: prodConfig
 };

@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
-    "lint": "gulp --lint",
+    "lint": "eslint -c .eslintrc.json app/src/assets/js/**/*",
     "build": "gulp build",
     "release": "gulp release",
     "server": "browser-sync start -s './app/_release' --port 8000"
@@ -28,10 +28,7 @@
     "browser-sync": "^2.12.8",
     "date-utils": "^1.2.21",
     "eslint": "^3.11.1",
-    "eslint-import-resolver-webpack": "^0.8.1",
-    "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-prefer-object-spread": "^1.1.0",
     "eslint-plugin-react": "^6.10.0",
     "expose-loader": "^0.7.1",

@@ -92,12 +92,10 @@ gulp.task('sass', ()=> {
 });
 
 // js
-// webpackConfigを引数によって通常のものかlint用か切り替える
-const webpackDevConfig = args.lint ? webpackConfig.devLint : webpackConfig.dev;
 gulp.task('scripts', () => {
   return gulp.src(DIR.src_assets + 'js/**/*.js')
   .pipe(plumber())
-  .pipe(webpackStream(webpackDevConfig, webpack))
+  .pipe(webpackStream(webpackConfig.dev, webpack))
   .pipe(gulp.dest(DIR.dest_assets + 'js'))
   .pipe(browserSync.stream());
 });
