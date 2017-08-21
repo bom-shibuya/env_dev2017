@@ -12,7 +12,7 @@ import webpack from 'webpack';
 import Path from 'path';
 import DirectoryManager from './DirectoryManager.js';
 
-const DIR = DirectoryManager('./')
+const DIR = DirectoryManager('./');
 
 const commonConfig = {
   entry: {
@@ -29,7 +29,9 @@ const commonConfig = {
     modules: ['node_modules'],
     // プラグインのpath解決
     alias: {
-      'modernizr$': Path.resolve(__dirname, '.modernizrrc')
+      'modernizr$': Path.resolve(__dirname, '.modernizrrc'),
+      'ScrollToPlugin': Path.resolve(__dirname, 'node_modules/gsap/ScrollToPlugin.js'),
+      'EasePack': Path.resolve(__dirname, 'node_modules/gsap/EasePack.js')
     }
   },
   // モジュール
@@ -92,7 +94,7 @@ const devLintConfig = {
         loader: 'eslint-loader'
       }]
     }
-}
+};
 
 // for production Config
 const prodConfig = {...commonConfig,
