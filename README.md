@@ -8,7 +8,7 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
 
 ### node
 
-* >= 7.5.0
+* >= 7.0.0
 
 他でも動くと思うけど、動作してるのは7.5.0
 
@@ -25,7 +25,7 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
   * gulp-file-include -- pug使わないときのために一応置いてる。
   * sass(scssでない)
   * pleeease -- cssをいい感じに
-  * webpack2 -- jsをどうこうするのに
+  * webpack3 -- jsをどうこうするのに
   * imagemin -- 画像圧縮
   * browser-sync -- ローカルホスト立ち上げ用
 
@@ -101,18 +101,16 @@ eslintがエラー吐くときにnpm ERR!がいっぱい出ますが、ウザか
 現在主流なのはwebpack configをcommmon/dev/prodの3枚とかに分けることだとおもうのですが、今回は対して違いがないので、全て1枚のファイルにまとめています。そしてオブジェクトにぶら下げてわたすことで、gulpで読み込むときにどの設定を読み込むかを分けています。
 現状2パターンあります。(dev/prod)
 
-**webpack2とbabel**
+**webpack3とbabel**
 
-babelで jsのトランスパイルを行っていますが、webpack2の絡みのせいでややこしいことになっています。<br>
-なぜなら、webpack2ではes6 modules(import/export)をfalseにしないとtree shakingがおこなわれないけれど、設定ファイルである、gulpfile.babel.jsとwebpack.config.babel.jsではimportとか、いろいろ使いたいみたいな気持ちがあったからです。<br>
+babelで jsのトランスパイルを行っていますが、webpack3の絡みのせいでややこしいことになっています。<br>
+なぜなら、webpack3ではes6 modules(import/export)をfalseにしないとtree shakingがおこなわれないけれど、設定ファイルである、gulpfile.babel.jsとwebpack.config.babel.jsではimportとか、いろいろ使いたいみたいな気持ちがあったからです。<br>
 つまり、.babelrcに設定ファイル用をかいているが、実際のjsをコンパイルするとき用のbabelの設定はwebpack.config内で別途記述しているということです。<br>
 もしかしたらなんとかするかもしれません。
 
 **eslint**
 
-FREE CODE CAMPのものをパクってきて使ってます。~~ですが、**エラーを警告に変更**してます。これはlintモードもwatchが走るようにしているのですが、警告がでるとwatchが止まるからです。方法が見つかれば修正するかも~~<br>
-有志の助言によって解決しました。勉強不足でした。
-
+FREE CODE CAMPのものをパクってきて使ってます。
 
 ### special thanks
 
