@@ -13,29 +13,30 @@
     display: block
 
 // bgSize
-=bgCover()
+=bg-cover()
   background-repeat: no-repeat
   background-position: center
   background-size: cover
 
-=bgContain()
+=bg-contain()
   background-repeat: no-repeat
   background-position: center
   background-size: contain
 
 // Centering
-//// +place()：上下左右中央
-//// +place(n%, n%, string, string)：第一第二引数に配置位置,第三にtranslateの前のプロパティ,第四にtranslateの後ろのプロパティ
-//// e.g.: +place(70%, null, scale(0.5), rotate(45deg))
-=place($position1: null, $position2: null, $addPrependProp: null ,$addAppendProp: null)
+// $place => 'CENTER', 'VERTICAL' or 'HORIZONTAL'
+=center($place: 'CENTER', $addPrependProp: null ,$addAppendProp: null)
   position: absolute
-  // centering
-  @if ($position1 == null)
+  // 中央
+  @if ($place == 'CENTER')
     top: 50%
     left: 50%
-    transform: translate(-50%, -50%)
-    // placement
-  @else
-    top: $position2
-    left: $position1
-    transform: $addPrependProp translate(-$position1, -$position2) $addAppendProp
+    transform: $addPrependProp translate(-50%, -50%) $addAppendProp
+  // 上下中央
+  @if ($place == 'VERTICAL')
+    top: 50%
+    transform: $addPrependProp translateY(-50%) $addAppendProp
+  // 左右中央
+  @if ($place == 'HORIZONTAL')
+    left: 50%
+    transform: $addPrependProp translateX(-50%) $addAppendProp
