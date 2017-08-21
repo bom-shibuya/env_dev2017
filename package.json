@@ -4,7 +4,7 @@
   "description": "Tokyo Shibuya Development Kit",
   "main": "index.js",
   "engines": {
-    "node": ">= 7.5.0"
+    "node": ">= 7.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,6 +17,7 @@
   "keywords": [],
   "author": "Bom Shibuya",
   "license": "MIT",
+  "browserslist": ["last 4 versions", "not ie < 11"],
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.23.1",

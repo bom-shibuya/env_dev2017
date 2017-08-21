@@ -77,9 +77,6 @@ gulp.task('sass', ()=> {
   })
   .on('error', sass.logError))
   .pipe(please({
-    autoprefixer: {
-      browsers: ['last 4 versions', 'not ie < 11']
-    },
     sass: false,
     minifier: false,
     rem: false,

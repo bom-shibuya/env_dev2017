@@ -45,12 +45,7 @@ const commonConfig = {
           babelrc: false,
           'presets': [
             'stage-0',
-            ['env', {
-              'targets': {
-                 'browsers': ['last 4 versions', 'not ie < 11']
-              },
-              'modules': false
-            }]
+            ['env', { 'modules': false }]
           ],
           'plugins': [
             'transform-runtime'
