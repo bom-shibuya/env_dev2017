@@ -1,6 +1,7 @@
 'use strict';
 
 import 'babel-polyfill';
+// import 'whatwg-fetch';
 // impot library
 // import {
 //   TweenMax,
@@ -13,5 +14,4 @@ import 'babel-polyfill';
 // console.log(modernizr);
 
 $(() => {
-
 });

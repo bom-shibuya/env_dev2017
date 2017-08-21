@@ -55,6 +55,7 @@
     "jquery": "^2.2.4",
     "modernizr": "^3.4.0",
     "tokyo-shibuya-reset": "https://github.com/bom-shibuya/TOKYO_SHIBUYA_RESET.git",
-    "webfontloader": "^1.6.27"
+    "webfontloader": "^1.6.27",
+    "whatwg-fetch": "^2.0.3"
   }
 }
