@@ -31,6 +31,7 @@ import del from 'del'; // clean task用
 import DirectoryManager from './DirectoryManager.js'; // directory 共通化用
 
 const DIR = DirectoryManager();
+const HTML_TASK = 'fileinclude'; // pug or fileinclude
 
 // *********** COMMON METHOD ***********
 
@@ -107,7 +108,7 @@ gulp.task('fileinclude', ()=> {
     .pipe(plumber())
     .pipe(fileinclude({
       prefix: '@@',
-      basepath: '@file'
+      basepath: 'app/src/_inc'
     }))
     .pipe(gulp.dest(DIR.dest))
     .pipe(browserSync.stream());
@@ -146,7 +147,8 @@ gulp.task('imageMin', ()=> {
 
 // watch
 gulp.task('watch', ()=> {
-  gulp.watch(DIR.src + '**/*.pug', ['pug']);
+  const htmlExpanded = (HTML_TASK === 'pug') ? 'pug': 'html';
+  gulp.watch(DIR.src + '**/*.' + htmlExpanded, [HTML_TASK]);
   gulp.watch(DIR.src_assets + 'sass/**/*.{sass,scss}', ['sass']);
   gulp.watch(DIR.src_assets + 'js/**/*.js', ['scripts']);
 });
@@ -156,7 +158,7 @@ gulp.task('build', ()=> {
   cleanDIR = DIR.dest;
   runSequence(
     'clean',
-    ['pug', 'scripts', 'sass', 'imageMin'],
+    [HTML_TASK, 'scripts', 'sass', 'imageMin'],
   );
 });
 
@@ -165,7 +167,7 @@ gulp.task('default', ()=> {
   cleanDIR = DIR.dest;
   runSequence(
     'clean',
-    ['pug', 'scripts', 'sass', 'imageMin'],
+    [HTML_TASK, 'scripts', 'sass', 'imageMin'],
     'browserSync',
     'watch'
   );
