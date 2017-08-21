@@ -21,7 +21,7 @@ import runSequence from 'run-sequence'; // タスクの処理順序の担保
 import imagemin from 'gulp-imagemin'; // 画像圧縮
 import sass from 'gulp-sass'; // sass!!!
 import sourcemaps from'gulp-sourcemaps'; // sassのソースマップ吐かせる
-import please from "gulp-pleeease"; // sass周りのいろいろ
+import please from 'gulp-pleeease'; // sass周りのいろいろ
 import webpack from 'webpack'; // js関係のことを今回やらせます。
 import webpackStream from 'webpack-stream'; // webpack2をつかうためのもの
 import webpackConfig from './webpack.config.babel.js'; // webpackの設定ファイル
@@ -37,7 +37,7 @@ const DIR = DirectoryManager();
 const args = minimist(process.argv.slice(2));
 
 // 現在時刻の取得
-const fmtdDate = new Date().toFormat("YYYY-MM-DD HH24MISS");
+const fmtdDate = new Date().toFormat('YYYY-MM-DD HH24MISS');
 
 // clean
 let cleanDIR;
@@ -65,10 +65,13 @@ gulp.task('browserSync', ()=> {
 
 // sass
 gulp.task('sass', ()=> {
-  return gulp.src(DIR.src_assets +'sass/**/*.{sass,scss}')
+  return gulp.src(DIR.src_assets + 'sass/**/*.{sass,scss}')
   .pipe(sourcemaps.init())
   .pipe(plumber())
-  .pipe(sass({outputStyle: ':expanded'})
+  .pipe(sass({
+    includePaths: 'node_modules/tokyo-shibuya-reset',
+    outputStyle: ':expanded'
+  })
   .on('error', sass.logError))
   .pipe(please({
     autoprefixer: {
@@ -97,8 +100,8 @@ gulp.task('scripts', () => {
 });
 
 // html include
-gulp.task("fileinclude", ()=> {
-  gulp.src([DIR.src + '**/*.html', '!' + DIR.src +'_inc/**/*.html'])
+gulp.task('fileinclude', ()=> {
+  gulp.src([DIR.src + '**/*.html', '!' + DIR.src + '_inc/**/*.html'])
     .pipe(plumber())
     .pipe(fileinclude({
       prefix: '@@',
@@ -109,8 +112,8 @@ gulp.task("fileinclude", ()=> {
 });
 
 // pug
-gulp.task("pug", ()=> {
-  gulp.src([DIR.src + '**/*.pug', '!' + DIR.src + '_inc/', '!' + DIR.src +'_inc/**/*.pug'])
+gulp.task('pug', ()=> {
+  gulp.src([DIR.src + '**/*.pug', '!' + DIR.src + '_inc/', '!' + DIR.src + '_inc/**/*.pug'])
     .pipe(plumber())
     .pipe(pug({
       pretty: true,
@@ -148,22 +151,22 @@ gulp.task('watch', ()=> {
 
 // only build
 gulp.task('build', ()=> {
-  cleanDIR = DIR.dest
+  cleanDIR = DIR.dest;
   runSequence(
     'clean',
     ['pug', 'scripts', 'sass', 'imageMin'],
-  )
+  );
 });
 
 // default
 gulp.task('default', ()=> {
-  cleanDIR = DIR.dest
+  cleanDIR = DIR.dest;
   runSequence(
     'clean',
     ['pug', 'scripts', 'sass', 'imageMin'],
     'browserSync',
     'watch'
-  )
+  );
 });
 
 // *********** RELEASE TASK ***********
@@ -178,25 +181,25 @@ gulp.task('prodCss', ()=> {
     pseudoElements: false
   }))
   .pipe(insert.prepend('/*! compiled at:' + fmtdDate + ' */\n'))
-  .pipe(gulp.dest(DIR.release_assets + 'css/'))
+  .pipe(gulp.dest(DIR.release_assets + 'css/'));
 });
 
 // js conat
 gulp.task('prodScripts', () => {
   return webpackStream(webpackConfig.prod, webpack)
-  .pipe(gulp.dest(DIR.release_assets + 'js'))
+  .pipe(gulp.dest(DIR.release_assets + 'js'));
 });
 
 // imgのcopy
 gulp.task('imgCopy', ()=> {
   return gulp.src(DIR.dest_assets + 'img/**/*.{jpg,png,gif,svg,ico}')
-  .pipe(gulp.dest(DIR.release_assets + 'img/'))
+  .pipe(gulp.dest(DIR.release_assets + 'img/'));
 });
 
 // htmlのcopy
 gulp.task('htmlCopy', ()=> {
   return gulp.src(DIR.dest + '**/*.html')
-  .pipe(gulp.dest(DIR.release))
+  .pipe(gulp.dest(DIR.release));
 });
 
 // for release
@@ -205,5 +208,5 @@ gulp.task('release', ()=>{
   runSequence(
     'clean',
     ['prodCss', 'prodScripts', 'imgCopy', 'htmlCopy']
-  )
-})
+  );
+});
