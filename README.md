@@ -54,21 +54,23 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
 
     $ npm start
 
-開発タスク -- watch & lint
-
-    $ npm lint
-
 開発タスク -- 吐き出しだけ
 
-    $ npm build
+    $ npm run build
+
+eslint
+
+    $ npm run lint
+
+eslintがエラー吐くときにnpm ERR!がいっぱい出ますが、ウザかったら`npm run lint -s`でnpmを黙らせましょう。`--silent`でももちろんいいです。
 
 リリースタスク
 
-    $ npm release
+    $ npm run release
 
 リリースされたものの確認
 
-    $ npm server
+    $ npm run server
 
 ## 詳細
 
@@ -88,7 +90,8 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
       |
     package.json ...
 
-ディレクトリはpackage.jsonとどう階層においてあるdirectory.jsをgulpfileとwebpack configで使っています。<br>
+ディレクトリはpackage.jsonとどう階層においてあるDirectoryManager.jsをgulpfileとwebpack configで使っています。<br>
+それぞれ、pathの書き方が違うので、そこを柔軟にするために関数化して、必要なら引数を食わせることにしました。  
 ディレクトリ構成を変更する場合はそこも確認してみてください。
 
 ### webpackとbabelとeslint
@@ -96,7 +99,7 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
 **webpack configについて**
 
 現在主流なのはwebpack configをcommmon/dev/prodの3枚とかに分けることだとおもうのですが、今回は対して違いがないので、全て1枚のファイルにまとめています。そしてオブジェクトにぶら下げてわたすことで、gulpで読み込むときにどの設定を読み込むかを分けています。
-現状3パターンあります。(dev/lint/prod)
+現状2パターンあります。(dev/prod)
 
 **webpack2とbabel**
 
