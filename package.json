@@ -43,6 +43,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-pug": "^3.1.0",
     "gulp-sass": "^2.3.2",
+    "gulp-sass-glob": "^1.0.8",
     "gulp-sourcemaps": "^1.9.1",
     "minimist": "^1.2.0",
     "modernizr-loader": "0.0.5",

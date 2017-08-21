@@ -20,6 +20,7 @@ import fileinclude from 'gulp-file-include'; // file include 使いたい時の�
 import runSequence from 'run-sequence'; // タスクの処理順序の担保
 import imagemin from 'gulp-imagemin'; // 画像圧縮
 import sass from 'gulp-sass'; // sass!!!
+import sassGlob from 'gulp-sass-glob'; // sass!!!
 import sourcemaps from'gulp-sourcemaps'; // sassのソースマップ吐かせる
 import please from 'gulp-pleeease'; // sass周りのいろいろ
 import webpack from 'webpack'; // js関係のことを今回やらせます。
@@ -68,6 +69,7 @@ gulp.task('sass', ()=> {
   return gulp.src(DIR.src_assets + 'sass/**/*.{sass,scss}')
   .pipe(sourcemaps.init())
   .pipe(plumber())
+  .pipe(sassGlob())
   .pipe(sass({
     includePaths: 'node_modules/tokyo-shibuya-reset',
     outputStyle: ':expanded'
