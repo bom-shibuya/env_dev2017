@@ -1,0 +1,18 @@
+//- include layout
+extends /_inc/templates/_layout.pug
+
+//- meta 定義
+block meta
+  -
+    var pageSet = {
+      title: 'トップページ',
+      description: 'トップページの説明が入ります。',
+      imageUrl: '/'+setting.imgPath+'/bg01.jpg',
+      type: 'article'
+    }
+
+  +metaList(pageSet)
+
+//- コンテンツ
+block contents
+  p hello world!!

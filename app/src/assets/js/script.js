@@ -14,4 +14,5 @@ import 'babel-polyfill';
 // console.log(modernizr);
 
 $(() => {
+
 });

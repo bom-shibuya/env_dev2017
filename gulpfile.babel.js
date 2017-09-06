@@ -142,7 +142,7 @@ gulp.task('imageMin', ()=> {
 
 // watch
 gulp.task('watch', ()=> {
-  const htmlExpanded = (HTML_TASK === 'pug') ? 'pug': 'html';
+  const htmlExpanded = (HTML_TASK === 'pug') ? 'pug' : 'html';
   gulp.watch(DIR.src + '**/*.' + htmlExpanded, [HTML_TASK]);
   gulp.watch(DIR.src_assets + 'sass/**/*.{sass,scss}', ['sass']);
   gulp.watch(DIR.src_assets + 'js/**/*.js', ['scripts']);
@@ -171,7 +171,7 @@ gulp.task('default', ()=> {
 // *********** RELEASE TASK ***********
 
 // css
-gulp.task('prodCss', ()=> {
+gulp.task('release_CSS', ()=> {
   return gulp.src(DIR.dest_assets + 'css/*.css')
   .pipe(please({
     sass: false,
@@ -184,20 +184,18 @@ gulp.task('prodCss', ()=> {
 });
 
 // js conat
-gulp.task('prodScripts', () => {
+gulp.task('release_JS', () => {
   return webpackStream(webpackConfig.prod, webpack)
   .pipe(gulp.dest(DIR.release_assets + 'js'));
 });
 
-// imgのcopy
-gulp.task('imgCopy', ()=> {
-  return gulp.src(DIR.dest_assets + 'img/**/*.{jpg,png,gif,svg,ico}')
+// releaesへcopy
+gulp.task('release_COPY', ()=> {
+  // img
+  gulp.src(DIR.dest_assets + 'img/**/*.{jpg,png,gif,svg,ico}')
   .pipe(gulp.dest(DIR.release_assets + 'img/'));
-});
-
-// htmlのcopy
-gulp.task('htmlCopy', ()=> {
-  return gulp.src(DIR.dest + '**/*.html')
+  // html
+  gulp.src(DIR.dest + '**/*.html')
   .pipe(gulp.dest(DIR.release));
 });
 
@@ -206,6 +204,6 @@ gulp.task('release', ()=>{
   cleanDIR = DIR.release;
   runSequence(
     'clean',
-    ['prodCss', 'prodScripts', 'imgCopy', 'htmlCopy']
+    ['release_CSS', 'release_JS', 'release_COPY']
   );
 });
