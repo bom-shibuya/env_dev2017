@@ -1,6 +1,6 @@
 {
   "name": "Tokyo_Shibuya_dev",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Tokyo Shibuya Development Kit",
   "main": "index.js",
   "engines": {
