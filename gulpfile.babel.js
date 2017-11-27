@@ -68,38 +68,38 @@ gulp.task('browserSync', ()=> {
 // sass
 gulp.task('sass', ()=> {
   return gulp.src(DIR.src_assets + 'sass/**/*.{sass,scss}')
-  .pipe(sourcemaps.init())
-  .pipe(plumber())
-  .pipe(sassGlob())
-  .pipe(sass({
-    includePaths: 'node_modules/tokyo-shibuya-reset',
-    outputStyle: ':expanded'
-  })
-  .on('error', sass.logError))
-  .pipe(please({
-    sass: false,
-    minifier: false,
-    rem: false,
-    pseudoElements: false,
-    mqpacker: true
-  }))
-  .pipe(sourcemaps.write('./'))
-  .pipe(gulp.dest(DIR.dest_assets + 'css/'))
-  .pipe(browserSync.stream());
+    .pipe(sourcemaps.init())
+    .pipe(plumber())
+    .pipe(sassGlob())
+    .pipe(sass({
+      includePaths: 'node_modules/tokyo-shibuya-reset',
+      outputStyle: ':expanded'
+    })
+    .on('error', sass.logError))
+    .pipe(please({
+      sass: false,
+      minifier: false,
+      rem: false,
+      pseudoElements: false,
+      mqpacker: true
+    }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(DIR.dest_assets + 'css/'))
+    .pipe(browserSync.stream());
 });
 
 // js
 gulp.task('scripts', () => {
   return gulp.src(DIR.src_assets + 'js/**/*.js')
-  .pipe(plumber())
-  .pipe(webpackStream(webpackConfig.dev, webpack))
-  .pipe(gulp.dest(DIR.dest_assets + 'js'))
-  .pipe(browserSync.stream());
+    .pipe(plumber())
+    .pipe(webpackStream(webpackConfig.dev, webpack))
+    .pipe(gulp.dest(DIR.dest_assets + 'js'))
+    .pipe(browserSync.stream());
 });
 
 // html include
 gulp.task('fileinclude', ()=> {
-  gulp.src([DIR.src + '**/*.html', '!' + DIR.src + '_inc/**/*.html'])
+  return gulp.src([DIR.src + '**/*.html', '!' + DIR.src + '_inc/**/*.html'])
     .pipe(plumber())
     .pipe(fileinclude({
       prefix: '@@',
@@ -124,20 +124,20 @@ gulp.task('pug', ()=> {
 // imageMin
 gulp.task('imageMin', ()=> {
   return gulp.src(DIR.src_assets + 'img/**/*')
-  .pipe(imagemin(
-    [
-      imagemin.gifsicle({
-        optimizationLevel: 3,
-        interlaced: true
-      }),
-      imagemin.jpegtran({ progressive: true }),
-      imagemin.optipng({ optimizationLevel: 5 }),
-      imagemin.svgo({ removeViewBox: false })
-    ],
-    { verbose: true }
-  ))
-  .pipe(gulp.dest(DIR.dest_assets + 'img/'))
-  .pipe(browserSync.stream());
+    .pipe(imagemin(
+      [
+        imagemin.gifsicle({
+          optimizationLevel: 3,
+          interlaced: true
+        }),
+        imagemin.jpegtran({ progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+        imagemin.svgo({ removeViewBox: false })
+      ],
+      { verbose: true }
+    ))
+    .pipe(gulp.dest(DIR.dest_assets + 'img/'))
+    .pipe(browserSync.stream());
 });
 
 // watch
