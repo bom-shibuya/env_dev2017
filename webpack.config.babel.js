@@ -44,11 +44,10 @@ const commonConfig = {
         options: {
           babelrc: false,
           'presets': [
-            'stage-0',
             ['env', { 'modules': false }]
           ],
           'plugins': [
-            'transform-runtime'
+            'transform-object-rest-spread'
           ]
         }
       },
