@@ -31,8 +31,8 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
 
 * babel
   * env
-  * stage-0
-  * transform-runtime
+  * babel-plugin-transform-object-rest-spread
+  * babel-polyfill
 
 大まかには以上で、詳しいことはpackage.jsonで
 
@@ -52,25 +52,23 @@ TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
 
 開発タスク -- watch
 
-    $ npm start
+    $ yarn start
 
 開発タスク -- 吐き出しだけ
 
-    $ npm run build
+    $ yarn run build
 
 eslint
 
-    $ npm run lint
-
-eslintがエラー吐くときにnpm ERR!がいっぱい出ますが、ウザかったら`npm run lint -s`でnpmを黙らせましょう。`--silent`でももちろんいいです。
+    $ yarn run lint
 
 リリースタスク
 
-    $ npm run release
+    $ yarn run release
 
 リリースされたものの確認
 
-    $ npm run server
+    $ yarn run server
 
 ## 詳細
 

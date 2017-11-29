@@ -29,9 +29,9 @@ const commonConfig = {
     modules: ['node_modules'],
     // プラグインのpath解決
     alias: {
-      'modernizr$': Path.resolve(__dirname, '.modernizrrc'),
-      'ScrollToPlugin': Path.resolve(__dirname, 'node_modules/gsap/ScrollToPlugin.js'),
-      'EasePack': Path.resolve(__dirname, 'node_modules/gsap/EasePack.js')
+      modernizr$: Path.resolve(__dirname, '.modernizrrc'),
+      ScrollToPlugin: 'gsap/ScrollToPlugin.js',
+      EasePack: 'gsap/EasePack.js'
     }
   },
   // モジュール
@@ -44,11 +44,10 @@ const commonConfig = {
         options: {
           babelrc: false,
           'presets': [
-            'stage-0',
             ['env', { 'modules': false }]
           ],
           'plugins': [
-            'transform-runtime'
+            'transform-object-rest-spread'
           ]
         }
       },

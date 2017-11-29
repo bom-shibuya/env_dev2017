@@ -1,6 +1,6 @@
 {
   "name": "Tokyo_Shibuya_dev",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Tokyo Shibuya Development Kit",
   "main": "index.js",
   "engines": {
@@ -17,15 +17,17 @@
   "keywords": [],
   "author": "Bom Shibuya",
   "license": "MIT",
-  "browserslist": ["last 4 versions", "not ie < 11"],
+  "browserslist": [
+    "last 4 versions",
+    "not ie < 11"
+  ],
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^7.1.2",
-    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.22.0",
     "browser-sync": "^2.12.8",
     "date-utils": "^1.2.21",
     "eslint": "^4.5.0",
