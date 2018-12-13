@@ -1,4 +1,8 @@
-# TOKYO SHIBUYA DEV
+# 【deprecated】 TOKYO SHIBUYA DEV
+
+このレポジトリは移行しました。  
+こっちの[https://github.com/bom-shibuya/env_dev](https://github.com/bom-shibuya/env_dev)の方を使うぞ。
+
 ---
 
 TOKYO SHIBUYA DEVはホームページ手作り用キットです。<br>
